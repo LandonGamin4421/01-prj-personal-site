@@ -1,1 +1,143 @@
-/* Add you CSS here */
+/* Simple beginner-friendly CSS with comments
+   - Uses only flexbox (no grid)
+   - Easy to read and edit
+   - Adds light/dark themes using CSS variables and a small JS toggle
+*/
+
+/* ------------------
+   Theme variables
+   Change the colors here to customize the whole site
+   ------------------ */
+:root {
+  --bg: #f7f8fa;            /* page background */
+  --surface: #ffffff;       /* cards, header/footer */
+  --text: #222222;          /* main text */
+  --muted: #70757a;         /* secondary text */
+  --border: #e6e9ef;        /* thin borders */
+  --accent: #0b74de;        /* links and buttons */
+  --card-shadow: rgba(12,14,20,0.03);
+  --image-shadow: rgba(12,14,20,0.06);
+}
+
+/* Respect system dark mode as a fallback before JS runs */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --surface: #0f1720;
+    --text: #e6eef8;
+    --muted: #9aa4b2;
+    --border: rgba(255,255,255,0.06);
+    --accent: #4ea3ff;
+    --card-shadow: rgba(2,6,23,0.6);
+    --image-shadow: rgba(0,0,0,0.5);
+  }
+}
+
+/* Manual dark mode via a class on <body> (used by the toggle) */
+body.dark {
+  --bg: #0b1220;
+  --surface: #0f1720;
+  --text: #e6eef8;
+  --muted: #9aa4b2;
+  --border: rgba(255,255,255,0.06);
+  --accent: #4ea3ff;
+  --card-shadow: rgba(2,6,23,0.6);
+  --image-shadow: rgba(0,0,0,0.5);
+}
+
+/* ------------------
+   Basic resets and layout
+   ------------------ */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+.container { width: 90%; max-width: 1000px; margin: 0 auto; }
+
+/* Header */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+.logo { margin: 0; font-size: 1.25rem; }
+
+.main-nav a { color: var(--text); text-decoration: none; margin-left: 18px; font-weight: 500; }
+.main-nav a:hover { color: var(--accent); }
+
+/* Theme controls: single toggle button */
+.theme-controls { display: flex; align-items: center; gap: 8px; }
+.theme-toggle {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.theme-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Smooth transitions when theme changes */
+:root, body, .site-header, .site-footer, .project-card, .hero {
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+} 
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root, body, .site-header, .site-footer, .project-card, .hero { transition: none !important; }
+} 
+
+/* Hero section */
+.hero { background: linear-gradient(90deg, rgba(11,116,222,0.05), rgba(255,255,255,0)); padding: 40px 0; }
+.hero-inner { display: flex; align-items: center; gap: 20px; }
+.hero-text { flex: 1 1 300px; }
+.hero-text h2 { margin: 0 0 8px 0; font-size: 1.6rem; }
+.hero-text p { margin: 0 0 12px 0; color: var(--muted); }
+
+.btn { display: inline-block; background: var(--accent); color: white; padding: 8px 14px; border-radius: 6px; text-decoration: none; }
+.btn:hover { opacity: 0.95; }
+
+.hero-image img { width: 220px; border-radius: 8px; box-shadow: 0 6px 18px var(--image-shadow); }
+
+/* Simple sections */
+section { padding: 28px 0; }
+.about p { color: var(--text); margin: 8px 0 0 0; }
+
+/* Projects list using flexbox */
+.project-list { display: flex; gap: 18px; flex-wrap: wrap; }
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  width: calc(33.333% - 12px);
+  box-shadow: 0 6px 18px var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+}
+.project-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 6px; }
+.project-card h4 { margin: 10px 0 6px 0; }
+.project-card p { color: var(--muted); margin: 0 0 8px 0; }
+.card-link { color: var(--accent); text-decoration: none; font-weight: 500; }
+
+/* Footer */
+.site-footer { background: var(--surface); border-top: 1px solid var(--border); }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+.site-footer a { color: var(--accent); text-decoration: none; }
+
+/* Small, readable muted text */
+.muted { color: var(--muted); margin-top: 6px; }
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 780px) {
+  .hero-inner { flex-direction: column; text-align: center; }
+  .hero-image img { width: 70%; }
+  .project-card { width: 100%; }
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* Helpful comment: change --bg, --surface, --text, and --accent to customize your site */

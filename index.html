@@ -2,10 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Personal Site</title>
+  <!-- Link to the stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Add your HTML content here -->
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Landon Leleaux</h1>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+"
+    </div>
+  </header>
+
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h2>Hello — I'm learning web development</h2>
+        <p>Welcome to my portfolio. I build small projects as I learn HTML, CSS, and JavaScript.</p>
+        <a class="btn" href="#projects">See my projects</a>
+      </div>
+      <div class="hero-image">
+        <img src="img/hero-bg.jpg" alt="Laptop with code on screen">
+      </div>
+    </div>
+  </section>
+
+  <!-- About section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h3>About me</h3>
+      <p>I'm a beginner web developer taking a college course. I enjoy learning and building small, useful projects to practice.</p>
+    </div>
+  </section>
+
+  <!-- Projects section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h3>Projects</h3>
+      <p class="muted">A selection of simple projects created while learning.</p>
+
+      <!-- Use flexbox to create responsive project cards -->
+      <div class="project-list">
+        <article class="project-card">
+          <img src="img/laptop.jpg" alt="Project screenshot">
+          <h4>Project One</h4>
+          <p>Short description of the project and the technologies used.</p>
+          <a class="card-link" href="#">View project</a>
+        </article>
+
+        <article class="project-card">
+          <img src="img/laptop.jpg" alt="Project screenshot">
+          <h4>Project Two</h4>
+          <p>Short description of the project and the technologies used.</p>
+          <a class="card-link" href="#">View project</a>
+        </article>
+
+        <article class="project-card">
+          <img src="img/laptop.jpg" alt="Project screenshot">
+          <h4>Project Three</h4>
+          <p>Short description of the project and the technologies used.</p>
+          <a class="card-link" href="#">View project</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact" class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>Get in touch</h4>
+        <p>Email: <a href="mailto:landonleleaux07@gmail.com">landonleleaux07@gmail.com</a></p>
+      </div>
+      <p class="copyright">© <span id="year">2026</span> Landon Leleaux</p>
+    </div>
+  </footer>
+
+  <!-- Small script to update the year automatically and manage theme -->
+  <script>
+    // Global error logging to capture parse/runtime errors and unhandled rejections
+    window.addEventListener('error', function(e) {
+      console.log('[global error]', e.message, e.filename, e.lineno + ':' + e.colno, e.error);
+    });
+    window.addEventListener('unhandledrejection', function(e) {
+      console.log('[unhandled rejection]', e.reason);
+    });
+
+    // Update the year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
